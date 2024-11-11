@@ -1,0 +1,54 @@
+%{
+        #include <stdio.h>
+        int l=0,s=0,t=0,c=0;
+%}
+
+%%
+\n l++;
+\t t++;
+" " s++;
+. c++;
+%%
+
+int main()
+{
+        yyin=fopen("example.txt","r");
+        if(yyin==0)
+        {
+                printf("\nFile Not Found\n");
+        }
+        else
+        {
+                yylex();
+                printf("Number of lines : %d\n",l);
+                printf("Number of tabspaces : %d\n",t);
+                printf("Number of spaces : %d\n",s);
+                printf("Number of characters : %d",c);
+        }
+}
+int yywrap()
+{
+        return 1;
+}
+
+//example.txt
+
+
+
+/*
+
+#include <stdio.h>
+void main()
+{
+	printf("\tHello World\n");
+}
+
+nano fileName.l
+
+lex fileName.l
+
+cc lex.yy.c
+
+./a.out
+
+*/
